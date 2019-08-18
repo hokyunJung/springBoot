@@ -1,6 +1,11 @@
+<!-- <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %> -->
+
 <!DOCTYPE html>
-<html xmlns:th="http://www.typeleaf.org">
-<head>
+<!-- <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+  xmlns:sec="http://www.thymeleaf.org/extras/spring-security"> -->
+ <html xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+ 
+ <head>
 	<meta charset="utf-8"/>
 	<title>메인페이지</title>
 </head>
@@ -10,7 +15,12 @@
 	<a href="/mypage">마이페이지</a><br/>
 	<a href="/create">회원가입</a><br/>
 	<a href="/logout">로그아웃</a><br/>
-	
+		<a sec:authorize="hasAuthority('a')" href="/a">a</a><br/>
+		<a sec:authorize="hasAuthority('b')" href="/b">b</a><br/>
+		<a sec:authorize="hasAuthority('c')" href="/c">c</a><br/>
+	<div sec:authorize="hasRole('d')">
+	  This will only be displayed if authenticated user has role ROLE_ADMIN.
+	</div>
 </div>
 </body>
 </html>

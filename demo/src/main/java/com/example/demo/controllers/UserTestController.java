@@ -42,14 +42,15 @@ public class UserTestController {
     }
     
     @RequestMapping("/main")
-    public String main(@AuthenticationPrincipal DetailsUser detailsUser)
+    public ModelAndView main(@AuthenticationPrincipal DetailsUser detailsUser)
     {
     	System.out.println(detailsUser.getAuthorities().toString());
-
+    	ModelAndView mv = new ModelAndView();
     	
-    	
+    	mv.addObject("detailsUser", detailsUser);
+    	mv.setViewName("main");
     	return
-    		"main";
+    			mv;
     }
 
     @RequestMapping("/create")
